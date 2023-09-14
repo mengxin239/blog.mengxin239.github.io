@@ -20,31 +20,33 @@
     var CONFIG = {"hostname":"blog.mengxin239.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="是萌新酱的Blog Reborn版（数据库丢了就又重新开了">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MengXin Blog">
-<meta property="og:url" content="http://blog.mengxin239.github.io/index.html">
+  <meta name="description" content="项目地址： https:&#x2F;&#x2F;github.com&#x2F;mengxin239&#x2F;OpenWrt-Notify 部署两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了) 服务端12345678opkg updateopkg install git python3 python3-pippip install ai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="将OpenWrt信息推送到小米手环">
+<meta property="og:url" content="http://blog.mengxin239.github.io/2023/09/14/openwrt-notify/index.html">
 <meta property="og:site_name" content="MengXin Blog">
-<meta property="og:description" content="是萌新酱的Blog Reborn版（数据库丢了就又重新开了">
+<meta property="og:description" content="项目地址： https:&#x2F;&#x2F;github.com&#x2F;mengxin239&#x2F;OpenWrt-Notify 部署两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了) 服务端12345678opkg updateopkg install git python3 python3-pippip install ai">
 <meta property="og:locale">
+<meta property="article:published_time" content="2023-09-14T14:22:33.899Z">
+<meta property="article:modified_time" content="2023-09-14T14:26:20.211Z">
 <meta property="article:author" content="Meng Xin">
 <meta property="article:tag" content="MengXin,Blog,博客,萌新,萌新酱,萌新博客,萌新酱的博客">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://blog.mengxin239.github.io/">
+<link rel="canonical" href="http://blog.mengxin239.github.io/2023/09/14/openwrt-notify/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh'
   };
 </script>
 
-  <title>MengXin Blog</title>
+  <title>将OpenWrt信息推送到小米手环 | MengXin Blog</title>
   
 
 
@@ -142,9 +144,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
@@ -160,10 +163,9 @@
       <meta itemprop="name" content="MengXin Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/14/openwrt-notify/" class="post-title-link" itemprop="url">将OpenWrt信息推送到小米手环</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          将OpenWrt信息推送到小米手环
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -187,7 +189,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/mengxin239/OpenWrt-Notify">https://github.com/mengxin239/OpenWrt-Notify</a></p>
+        <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/mengxin239/OpenWrt-Notify">https://github.com/mengxin239/OpenWrt-Notify</a></p>
 <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了)</p>
 <h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install git python3 python3-pip</span><br><span class="line">pip install aiohttp</span><br><span class="line">git clone https://github.com/mengxin239/OpenWrt-Notify</span><br><span class="line">cd OpenWrt-Notify</span><br><span class="line">rm -rf client</span><br><span class="line">cp server/* ./</span><br><span class="line">rm -rf server</span><br></pre></td></tr></table></figure>
 
@@ -212,100 +214,30 @@
 <p>如果有问题的话发issue（虽然大概率要等一段时间） 主要是为了后面别人配置时候出问题好避坑</p>
 <p>Telegram群：<a target="_blank" rel="noopener" href="https://t.me/mengxin239offical">@mengxin239offical</a><br>Telegram频道：<a target="_blank" rel="noopener" href="https://t.me/mengxin239OfficialChannel">@mengxin239OfficialChannel</a></p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://blog.mengxin239.github.io/2023/09/07/miband8-heartrate/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Meng Xin">
-      <meta itemprop="description" content="是萌新酱的Blog Reborn版（数据库丢了就又重新开了">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="MengXin Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/07/miband8-heartrate/" class="post-title-link" itemprop="url">使用小米手环实时采集心率数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-09-07 22:45:38" itemprop="dateCreated datePublished" datetime="2023-09-07T22:45:38+08:00">2023-09-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-13 12:54:08" itemprop="dateModified" datetime="2023-09-13T12:54:08+08:00">2023-09-13</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/mengxin239/miband4-heartrate">https://github.com/mengxin239/miband4-heartrate</a></p>
-<p>目前支持平台：Windows&#x2F;Linux&#x2F;MacOS</p>
-<p>要求就是平台必须支持蓝牙（理论上应该都支持BLE设备的）</p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>首先安装bleak库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bleak</span><br></pre></td></tr></table></figure>
-
-<p>克隆项目</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mengxin239/miband4-heartrate</span><br></pre></td></tr></table></figure>
-<p>然后查看自己手环的蓝牙地址（手环设置里面有的），替换掉BlueToothAddress,然后更改保存到的文件名，运行即可</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>小米手环开启运动心率广播后会向外发送心率，使用python监听特定蓝牙地址的通信即可</p>
-<p>直接将BLE收到来自手环广播的data打印出来后会发现其中有一个变化的字符（即第四个字符） 把ACSII字符转换为十进制即为此时的心率</p>
-<p>因为是使用运动心率广播获取心率，所以本程序仅在运动状态下可用，先随便进入一个运动后即可抓取 <del>（不然的话心率会飙到255</del></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>仅测试过小米手环4，理论上小米6以下通吃（6以上可能会不识别） </p>
-<p>只要进入运动模式时在附近的跑步机等智能设备（前提是心率不是智能设备自己获取的）上可以获取到自己的心率就可以用(大概)</p>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p><del>小米8的支持好像是不可能了</del>mebeats项目（不是我的）用的是心率测试接口，8好像直接砍掉了，只能获取历史心率，所以说最多一秒一次 <del>我就是买了小米8的大聪明</del></p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/09/07/miband8-heartrate/" rel="prev" title="使用小米手环实时采集心率数据">
+      <i class="fa fa-chevron-left"></i> 使用小米手环实时采集心率数据
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -358,6 +290,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">1.</span> <span class="nav-text">部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">1.1.</span> <span class="nav-text">服务端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADTelegram%E6%8F%90%E9%86%92-%EF%BC%88%E4%B8%8D%E5%BB%BA%E8%AE%AE%E5%85%B3%E9%97%AD%EF%BC%89"><span class="nav-number">1.1.1.</span> <span class="nav-text">关闭Telegram提醒 （不建议关闭）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">1.2.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E6%AE%B5%E4%B8%BA192-168-0-0-24%EF%BC%88%E5%8D%B3%E7%AC%AC%E4%B8%89%E4%BD%8D%E4%B8%BA0%E7%9A%84%EF%BC%89%EF%BC%8C%E5%B9%B6%E4%B8%94%E4%BD%A0%E7%9A%84OpenWrt%E5%9C%B0%E5%9D%80%E4%B8%BA192-168-0-1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E7%94%A8%E6%88%91%E7%BC%96%E8%AF%91%E5%87%BA%E7%9A%84Apk-%E5%9C%A8release-%E5%85%B6%E4%BB%96%E7%BD%91%E6%AE%B5%E6%88%96%E8%80%85OpenWrt%E5%9C%B0%E5%9D%80%E4%B8%8D%E6%98%AF0-1%E7%9A%84%E5%B0%B1%E7%BB%A7%E7%BB%AD%E7%9C%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">网段为192.168.0.0&#x2F;24（即第三位为0的），并且你的OpenWrt地址为192.168.0.1，可以直接用我编译出的Apk(在release),其他网段或者OpenWrt地址不是0.1的就继续看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenWrt%E6%8E%A8%E9%80%81"><span class="nav-number">1.3.</span> <span class="nav-text">OpenWrt推送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E5%90%8E"><span class="nav-number">2.</span> <span class="nav-text">最后</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
