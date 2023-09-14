@@ -173,7 +173,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-09-14 22:22:33 / Modified: 22:26:20" itemprop="dateCreated datePublished" datetime="2023-09-14T22:22:33+08:00">2023-09-14</time>
+              <time title="Created: 2023-09-14 22:22:33 / Modified: 22:35:02" itemprop="dateCreated datePublished" datetime="2023-09-14T22:22:33+08:00">2023-09-14</time>
             </span>
 
           
@@ -189,29 +189,15 @@
       
           <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/mengxin239/OpenWrt-Notify">https://github.com/mengxin239/OpenWrt-Notify</a></p>
 <h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了)</p>
-<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install git python3 python3-pip</span><br><span class="line">pip install aiohttp</span><br><span class="line">git clone https://github.com/mengxin239/OpenWrt-Notify</span><br><span class="line">cd OpenWrt-Notify</span><br><span class="line">rm -rf client</span><br><span class="line">cp server/* ./</span><br><span class="line">rm -rf server</span><br></pre></td></tr></table></figure>
-
-<p>然后打开server.py,修改里面的Token和ChatID（这个和关闭Telegram提醒二选一）</p>
-<h3 id="关闭Telegram提醒-（不建议关闭）"><a href="#关闭Telegram提醒-（不建议关闭）" class="headerlink" title="关闭Telegram提醒 （不建议关闭）"></a>关闭Telegram提醒 （不建议关闭）</h3><p>将</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.enable_telegram_notify = True</span><br></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.enable_telegram_notify = False</span><br></pre></td></tr></table></figure>
-<p>即可</p>
-<p>至于Token和Chat_ID怎么获取、守护进程怎么设置我就不教了，网上一搜一大把</p>
-<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="网段为192-168-0-0-24（即第三位为0的），并且你的OpenWrt地址为192-168-0-1，可以直接用我编译出的Apk-在release-其他网段或者OpenWrt地址不是0-1的就继续看"><a href="#网段为192-168-0-0-24（即第三位为0的），并且你的OpenWrt地址为192-168-0-1，可以直接用我编译出的Apk-在release-其他网段或者OpenWrt地址不是0-1的就继续看" class="headerlink" title="网段为192.168.0.0&#x2F;24（即第三位为0的），并且你的OpenWrt地址为192.168.0.1，可以直接用我编译出的Apk(在release),其他网段或者OpenWrt地址不是0.1的就继续看"></a>网段为192.168.0.0&#x2F;24（即第三位为0的），并且你的OpenWrt地址为192.168.0.1，可以直接用我编译出的Apk(在release),其他网段或者OpenWrt地址不是0.1的就继续看</h3><p>克隆仓库，打开client（直接用AndroidStudio打开路径就行）</p>
-<p>修改 “app\src\main\java\com\mengxin239\notifyapp\MainActivity.kt”</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private val serverAddr = &quot;ws://192.168.0.1:8080/ws&quot;</span><br></pre></td></tr></table></figure>
-<p>这一行,直接改掉ip地址就行，然后手机插到电脑打开开发者模式直接使用AndroidStudio编译运行（Shift+F10）即可</p>
-<p>打开”OpenWrt Notify”的通知权限，后台运行权限，关掉省电，打开自启，然后Mi Fitness打开消息提醒，选择”OpenWrt Notify”,至此手机端配置完成</p>
-<h2 id="OpenWrt推送"><a href="#OpenWrt推送" class="headerlink" title="OpenWrt推送"></a>OpenWrt推送</h2><p>打开<a target="_blank" rel="noopener" href="http://192.168.0.1/cgi-bin/luci/admin/services/wechatpush">微信推送</a>（这里链接针对192.168.0.1写的，其他自己改下地址</p>
-<p>推送模式：自定义推送</p>
-<p>自定义推送内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;	</span><br><span class="line">	&quot;url&quot;: &quot;http:///192.168.0.1:8080/notification&quot;, </span><br><span class="line">	&quot;data&quot;: &quot;@$&#123;tempjsonpath&#125;&quot;,</span><br><span class="line">	&quot;content_type&quot;: &quot;Content-Type: application/json&quot;,</span><br><span class="line">	&quot;str_title_start&quot;: &quot;&quot;,</span><br><span class="line">	&quot;str_title_end&quot;: &quot;&quot;,</span><br><span class="line">	&quot;str_linefeed&quot;: &quot;\\n&quot;,</span><br><span class="line">	&quot;str_splitline&quot;: &quot;\\n----\\n&quot;,</span><br><span class="line">	&quot;str_space&quot;: &quot; &quot;,</span><br><span class="line">	&quot;str_tab&quot;: &quot;    &quot;,</span><br><span class="line">	&quot;type&quot;:</span><br><span class="line">	  &#123;</span><br><span class="line">		&quot;text&quot;:&quot;\&quot;$&#123;1&#125;$&#123;str_splitline&#125;$&#123;nowtime&#125;$&#123;2&#125;\&quot;&quot;</span><br><span class="line">	  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后把ip地址改一下，保存并应用</p>
-<h1 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h1><p>这个项目耗费时间最多的就是这个教程,整个项目用了不到一小时写出来的，主要是有ChatGPT加持（x</p>
-<p>如果有问题的话发issue（虽然大概率要等一段时间） 主要是为了后面别人配置时候出问题好避坑</p>
-<p>Telegram群：<a target="_blank" rel="noopener" href="https://t.me/mengxin239offical">@mengxin239offical</a><br>Telegram频道：<a target="_blank" rel="noopener" href="https://t.me/mengxin239OfficialChannel">@mengxin239OfficialChannel</a></p>
-
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/14/openwrt-notify/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -230,7 +216,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh">
-    <link itemprop="mainEntityOfPage" href="http://blog.mengxin239.github.io/2023/09/07/miband8-heartrate/">
+    <link itemprop="mainEntityOfPage" href="http://blog.mengxin239.github.io/2023/09/14/miband8-heartrate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -244,7 +230,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/09/07/miband8-heartrate/" class="post-title-link" itemprop="url">使用小米手环实时采集心率数据</a>
+            <a href="/2023/09/14/miband8-heartrate/" class="post-title-link" itemprop="url">小米手环实时采集心率数据</a>
         </h2>
 
         <div class="post-meta">
@@ -253,16 +239,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2023-09-07 22:45:38" itemprop="dateCreated datePublished" datetime="2023-09-07T22:45:38+08:00">2023-09-07</time>
+              <time title="Created: 2023-09-14 22:19:04 / Modified: 22:35:03" itemprop="dateCreated datePublished" datetime="2023-09-14T22:19:04+08:00">2023-09-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2023-09-13 12:54:08" itemprop="dateModified" datetime="2023-09-13T12:54:08+08:00">2023-09-13</time>
-              </span>
 
           
 
@@ -277,20 +257,14 @@
       
           <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/mengxin239/miband4-heartrate">https://github.com/mengxin239/miband4-heartrate</a></p>
 <p>目前支持平台：Windows&#x2F;Linux&#x2F;MacOS</p>
-<p>要求就是平台必须支持蓝牙（理论上应该都支持BLE设备的）</p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>首先安装bleak库</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install bleak</span><br></pre></td></tr></table></figure>
-
-<p>克隆项目</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/mengxin239/miband4-heartrate</span><br></pre></td></tr></table></figure>
-<p>然后查看自己手环的蓝牙地址（手环设置里面有的），替换掉BlueToothAddress,然后更改保存到的文件名，运行即可</p>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>小米手环开启运动心率广播后会向外发送心率，使用python监听特定蓝牙地址的通信即可</p>
-<p>直接将BLE收到来自手环广播的data打印出来后会发现其中有一个变化的字符（即第四个字符） 把ACSII字符转换为十进制即为此时的心率</p>
-<p>因为是使用运动心率广播获取心率，所以本程序仅在运动状态下可用，先随便进入一个运动后即可抓取 <del>（不然的话心率会飙到255</del></p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>仅测试过小米手环4，理论上小米6以下通吃（6以上可能会不识别） </p>
-<p>只要进入运动模式时在附近的跑步机等智能设备（前提是心率不是智能设备自己获取的）上可以获取到自己的心率就可以用(大概)</p>
-<h1 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h1><p><del>小米8的支持好像是不可能了</del>mebeats项目（不是我的）用的是心率测试接口，8好像直接砍掉了，只能获取历史心率，所以说最多一秒一次 <del>我就是买了小米8的大聪明</del></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/14/miband8-heartrate/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
