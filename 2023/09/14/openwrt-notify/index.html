@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"blog.mengxin239.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="项目地址： https:&#x2F;&#x2F;github.com&#x2F;mengxin239&#x2F;OpenWrt-Notify 部署两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了) 服务端">
+  <meta name="description" content="项目地址： https:&#x2F;&#x2F;github.com&#x2F;mengxin239&#x2F;OpenWrt-Notify 一个将OpenWrt通知发送到小米手环的项目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将OpenWrt信息推送到小米手环">
 <meta property="og:url" content="http://blog.mengxin239.github.io/2023/09/14/openwrt-notify/index.html">
 <meta property="og:site_name" content="MengXin Blog">
-<meta property="og:description" content="项目地址： https:&#x2F;&#x2F;github.com&#x2F;mengxin239&#x2F;OpenWrt-Notify 部署两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了) 服务端">
+<meta property="og:description" content="项目地址： https:&#x2F;&#x2F;github.com&#x2F;mengxin239&#x2F;OpenWrt-Notify 一个将OpenWrt通知发送到小米手环的项目">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-09-14T14:22:33.899Z">
-<meta property="article:modified_time" content="2023-09-14T14:35:02.394Z">
+<meta property="article:modified_time" content="2023-09-14T14:38:13.651Z">
 <meta property="article:author" content="Meng Xin">
 <meta property="article:tag" content="MengXin,Blog,博客,萌新,萌新酱,萌新博客,萌新酱的博客">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2023-09-14 22:22:33 / Modified: 22:35:02" itemprop="dateCreated datePublished" datetime="2023-09-14T22:22:33+08:00">2023-09-14</time>
+              <time title="Created: 2023-09-14 22:22:33 / Modified: 22:38:13" itemprop="dateCreated datePublished" datetime="2023-09-14T22:22:33+08:00">2023-09-14</time>
             </span>
 
           
@@ -190,10 +190,11 @@
 
       
         <p>项目地址： <a target="_blank" rel="noopener" href="https://github.com/mengxin239/OpenWrt-Notify">https://github.com/mengxin239/OpenWrt-Notify</a></p>
-<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了)</p>
-<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><span id="more"></span>
+<p>一个将OpenWrt通知发送到小米手环的项目</p>
+<span id="more"></span>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install git python3 python3-pip</span><br><span class="line">pip install aiohttp</span><br><span class="line">git clone https://github.com/mengxin239/OpenWrt-Notify</span><br><span class="line">cd OpenWrt-Notify</span><br><span class="line">rm -rf client</span><br><span class="line">cp server/* ./</span><br><span class="line">rm -rf server</span><br></pre></td></tr></table></figure>
+<h1 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h1><p>两个端都不能直接Ctrl+CV(但是如果你的OpenWrt也是192.168.0.0&#x2F;24的话可以直接用我的apk，我放release了)</p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">opkg update</span><br><span class="line">opkg install git python3 python3-pip</span><br><span class="line">pip install aiohttp</span><br><span class="line">git clone https://github.com/mengxin239/OpenWrt-Notify</span><br><span class="line">cd OpenWrt-Notify</span><br><span class="line">rm -rf client</span><br><span class="line">cp server/* ./</span><br><span class="line">rm -rf server</span><br></pre></td></tr></table></figure>
 
 <p>然后打开server.py,修改里面的Token和ChatID（这个和关闭Telegram提醒二选一）</p>
 <h3 id="关闭Telegram提醒-（不建议关闭）"><a href="#关闭Telegram提醒-（不建议关闭）" class="headerlink" title="关闭Telegram提醒 （不建议关闭）"></a>关闭Telegram提醒 （不建议关闭）</h3><p>将</p>
